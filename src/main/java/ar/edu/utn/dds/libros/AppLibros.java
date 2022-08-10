@@ -2,12 +2,7 @@ package ar.edu.utn.dds.libros;
 import spark.Spark;
 
 public class AppLibros {
-    private RepoLibros repo;
-    private LibrosController controller;
-
-    public void init(){
-        repo = new RepoLibros();
-        controller = new LibrosController(repo);
+        public void init(){
     }
     public void start(){
         Spark.port(9000);

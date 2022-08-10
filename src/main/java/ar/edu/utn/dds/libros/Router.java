@@ -1,5 +1,6 @@
 package ar.edu.utn.dds.libros;
 
+import com.google.gson.Gson;
 import spark.Spark;
 
 public class Router {
@@ -8,18 +9,18 @@ public class Router {
   }
 
   private static void configure() {
+    RepoLibros repo = new RepoLibros();
+    LibrosController controller = new LibrosController(repo);
+    Gson gson = new Gson();           //AGREGO gson para que convierta y devuelva los objetos en json
+
     Spark.get("/",(req,res)->"Hola");
+
+    Spark.get("/libros",controller::list,gson::toJson);
+
+    Spark.get("/libros/:id", controller::get,gson::toJson);
+
+    Spark.delete("/libros/:id", controller::delete);
+
+    Spark.post("/libros/",controller::create,gson::toJson);
   }
-  /*
-        app.get(  "/home",  (Context ctx) -> ctx.result("hola!"));
-
-        app.get(  "/libros",  controller::list);
-
-        app.get("/libros/{id}", controller::get);
-
-        app.delete("/libros/{id}", controller::delete);
-
-        app.post("/libros/",controller::create);
-
-   */
 }

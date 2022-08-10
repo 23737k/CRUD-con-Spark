@@ -7,6 +7,15 @@ public class Libro {
     private String autor;
     private Long precio;
 
+    public Libro(String nombre,String autor, Long precio){
+        this.nombre=nombre;
+        this.autor=autor;
+        this.precio=precio;
+    }
+
+    public Libro() {
+    }
+
     public Long getId() {
         return id;
     }
