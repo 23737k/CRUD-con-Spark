@@ -4,7 +4,7 @@ import spark.Request;
 import spark.Response;
 
 import java.util.Collection;
-
+//en general se recomienda un controller por cada recurso o entidad de mi dominio
 public class LibrosController {
 
     private RepoLibros repo;
@@ -13,7 +13,7 @@ public class LibrosController {
         this.repo = repo;
     }
 
-    public Collection<Libro> list(Request req, Response resp) {
+    public Collection<Libro> list(Request req, Response resp) { // todos los metodos deben recibir (Request,Response)
         String precio_max = req.queryParams("precio_max");
         Collection<Libro> libros = null;
         if (precio_max != null) {
