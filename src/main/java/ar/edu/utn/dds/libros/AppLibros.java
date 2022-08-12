@@ -5,7 +5,7 @@ public class AppLibros {
         public void init(){
     }
     public void start(){
-        Spark.port(9000);
+        Spark.port(getHerokuAssignedPort());
         Router.init();
     }
     public static void main(String[] args) {
@@ -13,4 +13,12 @@ public class AppLibros {
         app.init();
         app.start();
     }
+    private static int getHerokuAssignedPort() {
+        String herokuPort = System.getenv("PORT");
+        if (herokuPort != null) {
+            return Integer.parseInt(herokuPort);
+        }
+        return 7000;
+    }
+
 }
